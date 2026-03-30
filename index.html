@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar Panels UK 2026 - Compare &amp; Save | HelioMatch</title>
+  <meta name="description" content="Compare solar panel options for UK homes with HelioMatch. Use the ROI calculator, review installer research, and move directly to provider websites without lead forms." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="theme-color" content="#1F8FE5" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="HelioMatch home">
+        <img src="heliomatch-logo.png" alt="HelioMatch logo" class="logo" />
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle="main-nav" aria-expanded="false" aria-label="Toggle navigation">≡</button>
+      <nav class="nav-links" id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="solar-roi-calculator.html">Calculator</a>
+        <a href="uk_solar_installers_comparison_en.html">Compare</a>
+        <a href="privacy-terms.html">Privacy &amp; Terms</a>
+        <a href="#quiz" class="btn">Start comparison</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Direct-link solar comparison</span>
+        <h1>Compare solar, estimate savings, and find your best next step</h1>
+        <p class="lead">
+          A faster way for UK homeowners to evaluate solar options without lead forms, spam calls, or unnecessary friction.
+        </p>
+        <ul class="hero-points">
+          <li>No lead forms</li>
+          <li>Mobile-friendly comparison flow</li>
+          <li>Calculator runs in your browser</li>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="solar-roi-calculator.html" class="btn">Use the solar ROI calculator</a>
+          <a href="uk_solar_installers_comparison_en.html" class="btn btn-secondary">Compare UK installers</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" id="quiz">
+        <div class="badge">3-step matcher</div>
+        <h3>Find your best solar path</h3>
+        <p>Quickly narrow down the most relevant next step. This is a comparison aid only and never collects personal data.</p>
+
+        <div class="step active" id="step1">
+          <h4>Step 1: Which home best matches yours?</h4>
+          <div class="option-grid">
+            <div class="option" onclick="nextStep('1-2 bedroom home')">1-2 bedroom home</div>
+            <div class="option" onclick="nextStep('3 bedroom home')">3 bedroom home</div>
+            <div class="option" onclick="nextStep('4+ bedroom home')">4+ bedroom home</div>
+            <div class="option" onclick="nextStep('Not sure yet')">Not sure yet</div>
+          </div>
+        </div>
+
+        <div class="step" id="step2">
+          <h4>Step 2: What is your roof orientation?</h4>
+          <div class="option-grid">
+            <div class="option" onclick="nextStep('South-facing roof')">South-facing</div>
+            <div class="option" onclick="nextStep('East / West roof')">East / West</div>
+            <div class="option" onclick="nextStep('Mixed / unsure roof')">Mixed / unsure</div>
+          </div>
+        </div>
+
+        <div class="step" id="step3">
+          <h4>Step 3: Are you considering battery storage?</h4>
+          <div class="option-grid">
+            <div class="option" onclick="showResults('Solar + battery')">Yes, include battery storage</div>
+            <div class="option" onclick="showResults('Solar only')">Solar only</div>
+            <div class="option" onclick="showResults('Not sure yet')">Not sure yet</div>
+          </div>
+        </div>
+
+        <div class="hero-note">HelioMatch does not collect enquiries or contact details. Every next step stays inside the site until you choose to leave.</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="resultsSection">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Your next-step routes</span>
+        <h2>Start with the route that fits your home, budget, and confidence level</h2>
+        <p id="resultsSummary">Use the quick matcher above, then choose the best next page for your decision stage.</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card operator-card">
+          <div>
+            <div class="operator-top">
+              <div>
+                <div class="badge">Best first step</div>
+                <h3>Use the ROI calculator</h3>
+              </div>
+              <div class="rating">Estimate first</div>
+            </div>
+            <p>Ideal if you want a quick view of system size, likely cost range, annual savings, and simple payback before comparing installers.</p>
+            <div class="chips">
+              <span class="chip">Client-side only</span>
+              <span class="chip">Battery-ready</span>
+              <span class="chip">Fast mobile UX</span>
+            </div>
+            <ul>
+              <li>Updated UK assumptions for 2026-style pricing</li>
+              <li>No login, no form, no data capture</li>
+              <li>Strong hand-off into the comparison page</li>
+            </ul>
+          </div>
+          <div>
+            <a href="solar-roi-calculator.html" class="btn">Open calculator</a>
+            <div class="micro" style="margin-top:10px">Use this before clicking out to providers if you want a clearer baseline.</div>
+          </div>
+        </article>
+
+        <article class="card operator-card">
+          <div>
+            <div class="operator-top">
+              <div>
+                <div class="badge">Best comparison view</div>
+                <h3>Review installer research</h3>
+              </div>
+              <div class="rating">Compare faster</div>
+            </div>
+            <p>Best for users who already know they want solar and need a structured comparison of pricing, warranties, finance options, and positioning.</p>
+            <div class="chips">
+              <span class="chip">Nationwide view</span>
+              <span class="chip">Pricing context</span>
+              <span class="chip">Warranty research</span>
+            </div>
+            <ul>
+              <li>Overview, pricing, warranty, finance, and verdict tabs</li>
+              <li>Mobile-friendly table wrappers and summary cards</li>
+              <li>Designed to support direct-link affiliate routing</li>
+            </ul>
+          </div>
+          <div>
+            <a href="uk_solar_installers_comparison_en.html" class="btn">Open comparison</a>
+            <div class="micro" style="margin-top:10px">Swap in your affiliate outbound URLs whenever you are ready to wire monetized exits.</div>
+          </div>
+        </article>
+
+        <article class="card operator-card">
+          <div>
+            <div class="operator-top">
+              <div>
+                <div class="badge">Trust builder</div>
+                <h3>Read privacy &amp; terms</h3>
+              </div>
+              <div class="rating">No forms</div>
+            </div>
+            <p>Clear legal positioning reinforces that HelioMatch is a direct-link affiliate publisher rather than a lead broker or quote form.</p>
+            <div class="chips">
+              <span class="chip">Privacy policy</span>
+              <span class="chip">Affiliate disclosure</span>
+              <span class="chip">Terms of use</span>
+            </div>
+            <ul>
+              <li>Explains the no-data-collection model</li>
+              <li>Clarifies cookies, affiliate links, and calculator disclaimers</li>
+              <li>Keeps footer legal navigation simple and professional</li>
+            </ul>
+          </div>
+          <div>
+            <a href="privacy-terms.html" class="btn">Open legal page</a>
+            <div class="micro" style="margin-top:10px">Review and replace business placeholders before publishing.</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="calculator-preview">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Calculator section</span>
+        <h2>Professional ROI estimates without heavy scripts or form friction</h2>
+        <p>The calculator page keeps the HelioMatch look while bringing in the stronger logic from your existing ROI tool.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">What it covers</div>
+          <h3>Inputs users actually understand</h3>
+          <p>The flow uses system size, region, roof orientation, annual consumption, financing, export rate, and battery options without overwhelming users.</p>
+          <ul>
+            <li>Client-side calculations only</li>
+            <li>Simple, clear savings framing</li>
+            <li>25-year benefit context and break-even guidance</li>
+          </ul>
+          <a href="solar-roi-calculator.html" class="btn btn-secondary">Go to calculator</a>
+        </div>
+        <div class="card">
+          <div class="badge">Why it converts</div>
+          <h3>Less friction, stronger confidence</h3>
+          <p>Visitors get value immediately, understand the trade-offs, and then move naturally into the comparison page instead of bouncing at a generic lead form.</p>
+          <ul>
+            <li>Fast loading and responsive layout</li>
+            <li>No data capture anxiety</li>
+            <li>Trust-building disclaimers in the right places</li>
+          </ul>
+          <a href="uk_solar_installers_comparison_en.html" class="btn btn-secondary">Compare installers next</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="compare-preview">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Compare section</span>
+        <h2>Turn research-heavy installer content into a cleaner decision page</h2>
+        <p>The installer research is preserved, but rebuilt into a more modern layout that reads cleanly on mobile and desktop.</p>
+      </div>
+
+      <div class="summary-cards">
+        <div class="summary-card">
+          <strong>Overview tab</strong>
+          <span class="micro">Quick market scan of major UK solar installers.</span>
+        </div>
+        <div class="summary-card">
+          <strong>Pricing tab</strong>
+          <span class="micro">Indicative system and battery ranges.</span>
+        </div>
+        <div class="summary-card">
+          <strong>Warranty tab</strong>
+          <span class="micro">Panel, inverter, battery, and workmanship context.</span>
+        </div>
+        <div class="summary-card">
+          <strong>Verdict tab</strong>
+          <span class="micro">Editorial best-for guidance for common buyer types.</span>
+        </div>
+      </div>
+
+      <div class="notice-box">
+        <strong>Affiliate routing note:</strong> the site is now structured for direct-link outbound buttons, but your actual affiliate URLs were not included in the source files. The page copy keeps that model clear without adding any lead forms.
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="savings">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Costs &amp; savings</span>
+        <h2>Use clear ranges instead of pretending every roof is identical</h2>
+        <p>Range-based messaging is more believable, more compliant, and better aligned with how solar buyers actually compare options.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card stat">
+          <strong>From &pound;4,500</strong>
+          <span>Indicative starting point for smaller residential solar-only systems.</span>
+        </div>
+        <div class="card stat">
+          <strong>&pound;6,500-&pound;9,000</strong>
+          <span>Typical mid-range territory for a common family-home system.</span>
+        </div>
+        <div class="card stat">
+          <strong>+&pound;3,000-&pound;5,000</strong>
+          <span>Illustrative battery add-on range depending on capacity and equipment.</span>
+        </div>
+        <div class="card stat">
+          <strong>0% VAT now</strong>
+          <span>Qualifying residential installations currently benefit from the reduced VAT position referenced in your source content.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">How it works</span>
+        <h2>A cleaner direct-link affiliate journey</h2>
+        <p>HelioMatch now reads like one website rather than a collection of separate mockups.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Start on the home page</h3>
+          <p>Users understand the no-form, direct-link model immediately and choose the best next page.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Estimate or compare</h3>
+          <p>They either run the calculator or move straight into the installer research depending on intent.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Exit confidently</h3>
+          <p>Your legal page and comparison copy support trust before you connect outbound affiliate links.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <div>
+          <h2>Ready to compare solar options?</h2>
+          <p>Start with the calculator if you want a tailored estimate, or jump straight into the UK installer comparison if you are already researching providers.</p>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="solar-roi-calculator.html" class="btn">Use calculator</a>
+          <a href="uk_solar_installers_comparison_en.html" class="btn btn-secondary">Open comparison</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently asked questions</h2>
+        <p>These answers support trust, reduce friction, and keep the site aligned with your direct-link model.</p>
+      </div>
+
+      <details>
+        <summary>Does HelioMatch collect my details?</summary>
+        <p>No. The rebuilt site does not add lead forms, account creation, or quote request capture. The calculator runs in the browser and legal copy reflects that model.</p>
+      </details>
+
+      <details>
+        <summary>Are the savings and payback estimates guaranteed?</summary>
+        <p>No. They are indicative only and depend on factors like system size, region, tariff, orientation, self-consumption, and installer pricing.</p>
+      </details>
+
+      <details>
+        <summary>Can I use this site on mobile?</summary>
+        <p>Yes. The core layout, calculator panels, and comparison tables have been rebuilt to work cleanly on smaller screens.</p>
+      </details>
+
+      <details>
+        <summary>Where do outbound affiliate clicks go?</summary>
+        <p>The structure is ready for direct-link routing, but the actual affiliate destination URLs were not present in the supplied source files. You can now add them page by page without changing the design system.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <strong>HelioMatch</strong><br />
+        Solar comparison for UK homeowners - calculator, comparison research, and legal clarity without lead forms.
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="solar-roi-calculator.html">Calculator</a>
+        <a href="uk_solar_installers_comparison_en.html">Compare</a>
+        <a href="privacy-terms.html">Privacy Policy &amp; Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+  <script>
+    let step = 1;
+    const answers = [];
+
+    function nextStep(answer) {
+      answers.push(answer);
+      const current = document.getElementById('step' + step);
+      if (current) current.classList.remove('active');
+      step += 1;
+      const next = document.getElementById('step' + step);
+      if (next) next.classList.add('active');
+    }
+
+    function showResults(answer) {
+      answers.push(answer);
+      const summary = document.getElementById('resultsSummary');
+      summary.textContent = 'Profile selected: ' + answers.join(' • ') + '. Choose the next page that matches where you are in your buying journey.';
+      document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

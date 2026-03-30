@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solar ROI Calculator | HelioMatch</title>
+  <meta name="description" content="Estimate solar generation, bill savings, SEG income, payback, and long-term value with the HelioMatch solar ROI calculator." />
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="theme-color" content="#1F8FE5" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-shell">
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="HelioMatch home">
+        <img src="heliomatch-logo.png" alt="HelioMatch logo" class="logo" />
+        <span class="brand-wordmark" aria-hidden="true"><span class="sun">Helio</span><span class="match">Match</span></span>
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle="calculator-nav" aria-expanded="false" aria-label="Toggle navigation">≡</button>
+      <nav class="nav-links" id="calculator-nav">
+        <a href="index.html">Home</a>
+        <a href="solar-roi-calculator.html">Calculator</a>
+        <a href="uk_solar_installers_comparison_en.html">Compare</a>
+        <a href="privacy-terms.html">Privacy &amp; Terms</a>
+        <a href="uk_solar_installers_comparison_en.html" class="btn">Compare installers</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <div>
+        <span class="eyebrow">Illustrative calculator</span>
+        <h1>Estimate how much solar could save your household</h1>
+        <p class="lead">
+          This calculator gives a fast, client-side estimate for generation, savings, export income, payback, and 25-year value. It is designed for research, not as financial or engineering advice.
+        </p>
+        <ul class="inline-points">
+          <li>No forms or data capture</li>
+          <li>Battery and finance scenarios</li>
+          <li>Optimized for mobile</li>
+        </ul>
+      </div>
+      <aside class="hero-aside">
+        <div class="badge">Direct-link model</div>
+        <h3 style="margin-top:12px">What happens next?</h3>
+        <p>Use the estimate to understand your budget and likely return, then move into the installer comparison page when you are ready to review providers.</p>
+        <a href="uk_solar_installers_comparison_en.html" class="btn">Go to comparison</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container calc-layout">
+      <div class="calc-panel">
+        <div class="section-head" style="margin-bottom:22px">
+          <span class="eyebrow">System inputs</span>
+          <h2 style="font-size:34px">Build your estimate</h2>
+          <p>Adjust the inputs below. Results update instantly and stay in your browser.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="systemSize">System size</label>
+            <select id="systemSize">
+              <option value="3">3 kW - small home</option>
+              <option value="5" selected>5 kW - average home</option>
+              <option value="10">10 kW - large home / light commercial</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="region">UK region</label>
+            <select id="region">
+              <option value="0.80">Scotland</option>
+              <option value="0.88">Northern England</option>
+              <option value="0.93">Midlands</option>
+              <option value="0.91">Wales</option>
+              <option value="1.03">Southern England</option>
+              <option value="1.08" selected>London / South East</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="orientation">Roof orientation</label>
+            <select id="orientation">
+              <option value="1.00" selected>South-facing</option>
+              <option value="0.87">South-East / South-West</option>
+              <option value="0.70">East / West</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="annualConsumption">Annual electricity use (kWh)</label>
+            <input type="number" id="annualConsumption" value="3700" min="500" max="20000" step="100" />
+          </div>
+          <div class="field">
+            <label for="unitRate">Electricity unit rate (p/kWh)</label>
+            <input type="number" id="unitRate" value="28" min="10" max="80" step="0.5" />
+          </div>
+          <div class="field">
+            <label for="budget">Installer budget</label>
+            <select id="budget">
+              <option value="budget">Budget</option>
+              <option value="mid" selected>Mid-range</option>
+              <option value="premium">Premium</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="financing">Payment model</label>
+            <select id="financing">
+              <option value="cash" selected>Cash purchase</option>
+              <option value="loan">Personal loan / credit</option>
+              <option value="lease">Solar lease</option>
+              <option value="ppa">Power Purchase Agreement</option>
+            </select>
+          </div>
+          <div class="field" id="loanField" style="display:none">
+            <label for="loanAPR">Loan APR (%)</label>
+            <input type="number" id="loanAPR" value="7.9" min="2" max="25" step="0.1" />
+          </div>
+          <div class="field full">
+            <label for="selfConsumption">Self-consumption rate</label>
+            <div class="slider-row">
+              <input type="range" id="selfConsumption" min="10" max="95" value="40" step="5" />
+              <strong id="selfConsumptionVal">40%</strong>
+            </div>
+          </div>
+          <div class="field">
+            <label for="segRate">SEG export rate (p/kWh)</label>
+            <input type="number" id="segRate" value="8" min="1" max="30" step="0.5" />
+          </div>
+          <div class="field">
+            <label for="priceInflation">Annual electricity price inflation (%)</label>
+            <div class="slider-row">
+              <input type="range" id="priceInflation" min="1" max="12" value="5" step="0.5" />
+              <strong id="priceInflationVal">5%</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <strong>Add battery storage</strong>
+            <span>Raises self-consumption and increases installed cost.</span>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="addBattery" />
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+
+        <div class="calc-actions">
+          <button class="btn" type="button" id="recalcButton">Recalculate</button>
+          <button class="btn btn-secondary" type="button" id="resetButton">Reset defaults</button>
+        </div>
+
+        <div class="calc-summary" id="calcSummary">
+          Your estimate updates instantly using broad UK assumptions for output, degradation, export income, maintenance, and financing.
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="badge">Estimated output</div>
+        <h3 style="margin-top:12px">Your solar snapshot</h3>
+        <p>Indicative only. Use this as a decision aid before comparing installers.</p>
+
+        <div class="result-grid">
+          <div class="result-box">
+            <h4>Estimated payback</h4>
+            <strong id="payback">-</strong>
+            <small id="paybackSub">years to break even</small>
+          </div>
+          <div class="result-box">
+            <h4>Annual generation</h4>
+            <strong id="annualGen">-</strong>
+            <small>kWh per year</small>
+          </div>
+          <div class="result-box">
+            <h4>Annual bill saving</h4>
+            <strong id="annualSaving">-</strong>
+            <small>year 1 estimate</small>
+          </div>
+          <div class="result-box">
+            <h4>SEG earnings</h4>
+            <strong id="segEarnings">-</strong>
+            <small>year 1 estimate</small>
+          </div>
+          <div class="result-box">
+            <h4>25-year net savings</h4>
+            <strong id="totalSavings">-</strong>
+            <small>after estimated costs</small>
+          </div>
+          <div class="result-box">
+            <h4>Annual ROI</h4>
+            <strong id="annualROI">-</strong>
+            <small>year 1 return on spend</small>
+          </div>
+        </div>
+
+        <div class="projection" id="projectionBars"></div>
+
+        <div class="calc-summary" id="recommendationBody" style="margin-top:18px"></div>
+
+        <div class="notice-box" style="margin-top:18px">
+          <strong>Important:</strong> This tool is illustrative only. Actual output and payback vary by roof, region, shading, tariff, installer quality, and future energy prices.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container">
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">Assumptions</div>
+          <h3>How the calculator works</h3>
+          <ul>
+            <li>Base irradiance uses 950 kWh per kWp per year as a broad UK average.</li>
+            <li>Output degrades by 0.5% per year.</li>
+            <li>Maintenance of &pound;125 per year starts in year 3.</li>
+            <li>Battery storage increases self-consumption but adds system cost.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="badge">Next step</div>
+          <h3>Use this estimate to compare providers</h3>
+          <p>Once you have a rough savings range, move to the installer comparison page to review pricing tiers, warranties, and finance options.</p>
+          <a href="uk_solar_installers_comparison_en.html" class="btn">Compare UK installers</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <strong>HelioMatch</strong><br />
+        Solar comparison for UK homeowners - ROI estimates, market research, and direct-link journeys.
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="solar-roi-calculator.html">Calculator</a>
+        <a href="uk_solar_installers_comparison_en.html">Compare</a>
+        <a href="privacy-terms.html">Privacy Policy &amp; Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="site.js"></script>
+  <script>
+    const BASE_IRRADIANCE = 950;
+    const DEGRADATION = 0.005;
+    const MAINTENANCE_FROM_YEAR = 3;
+    const MAINTENANCE_ANNUAL = 125;
+    const YEARS = 25;
+    const PRICES = {
+      3: { budget: 4500, mid: 5500, premium: 7000 },
+      5: { budget: 6500, mid: 8000, premium: 10500 },
+      10: { budget: 12000, mid: 15000, premium: 20000 }
+    };
+    const BATTERY_COST = { 3: 3000, 5: 4000, 10: 5000 };
+    const BATTERY_SELF_CONSUMPTION_BOOST = 0.35;
+    const INSTALLERS = {
+      budget: {
+        label: 'Budget-tier installer',
+        examples: 'Good for transparent pricing and fastest payback',
+        description: 'Budget installers are usually strongest for buyers who want to keep upfront cost down and move quickly.',
+        warranty: 'Typical profile: 25-year panel performance, 10-year inverter, shorter workmanship cover.'
+      },
+      mid: {
+        label: 'Mid-range installer',
+        examples: 'Best balance for most homeowners',
+        description: 'Mid-range installers usually balance equipment quality, aftercare, and price most effectively for owner-occupiers.',
+        warranty: 'Typical profile: 25-year panel, 10-25-year inverter, stronger workmanship coverage.'
+      },
+      premium: {
+        label: 'Premium installer',
+        examples: 'Best for premium hardware and longest cover',
+        description: 'Premium installers often provide stronger consumer protection, longer warranties, and better smart-tariff integration.',
+        warranty: 'Typical profile: 25-year to lifetime panel cover, strong inverter support, and longer workmanship guarantees.'
+      }
+    };
+
+    function fmt(number, decimals = 0) {
+      return number.toLocaleString('en-GB', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function fmtGBP(number) {
+      return '&pound;' + fmt(Math.round(number));
+    }
+
+    function calculate() {
+      const kw = parseInt(document.getElementById('systemSize').value, 10);
+      const regionFactor = parseFloat(document.getElementById('region').value);
+      const orientFactor = parseFloat(document.getElementById('orientation').value);
+      const annualConsumption = parseInt(document.getElementById('annualConsumption').value, 10) || 3700;
+      const unitRateP = parseFloat(document.getElementById('unitRate').value) || 28;
+      const selfPct = parseInt(document.getElementById('selfConsumption').value, 10) / 100;
+      const segRateP = parseFloat(document.getElementById('segRate').value) || 8;
+      const inflation = parseFloat(document.getElementById('priceInflation').value) / 100;
+      const budget = document.getElementById('budget').value;
+      const financing = document.getElementById('financing').value;
+      const addBattery = document.getElementById('addBattery').checked;
+      const loanAPR = parseFloat(document.getElementById('loanAPR').value) / 100 || 0.079;
+
+      const effectiveSelf = addBattery ? Math.min(selfPct + BATTERY_SELF_CONSUMPTION_BOOST, 0.95) : selfPct;
+      let systemCost = PRICES[kw][budget];
+      if (addBattery) systemCost += BATTERY_COST[kw];
+
+      let annualLoanRepayment = 0;
+      if (financing === 'loan') {
+        const r = loanAPR / 12;
+        const n = 120;
+        annualLoanRepayment = systemCost * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) * 12;
+      }
+
+      const annualLeasePayment = financing === 'lease' ? systemCost * 0.08 : 0;
+      const ppaSavingFactor = financing === 'ppa' ? 0.4 : 1;
+      const baseGeneration = kw * BASE_IRRADIANCE * regionFactor * orientFactor;
+
+      let cumulativeSaving = 0;
+      let paybackYear = null;
+      let yearOneSaving = 0;
+      let yearOneSEG = 0;
+      const projectionYears = [1, 5, 10, 15, 20, 25].map((year) => ({ year, value: 0 }));
+
+      for (let year = 1; year <= YEARS; year += 1) {
+        const generation = baseGeneration * Math.pow(1 - DEGRADATION, year - 1);
+        const rate = (unitRateP / 100) * Math.pow(1 + inflation, year - 1);
+        const segRate = (segRateP / 100) * Math.pow(1 + inflation * 0.5, year - 1);
+        const saved = Math.min(generation * effectiveSelf, annualConsumption) * rate * ppaSavingFactor;
+        const exported = generation * (1 - effectiveSelf) * segRate;
+        const maintenance = year >= MAINTENANCE_FROM_YEAR ? MAINTENANCE_ANNUAL : 0;
+        const loanCost = year <= 10 ? annualLoanRepayment : 0;
+        const leaseCost = annualLeasePayment;
+        const netBenefit = saved + exported - maintenance - loanCost - leaseCost;
+
+        cumulativeSaving += netBenefit;
+        if (year === 1) {
+          yearOneSaving = saved;
+          yearOneSEG = exported;
+        }
+
+        if (paybackYear === null && cumulativeSaving >= systemCost) {
+          paybackYear = year;
+        }
+
+        const projection = projectionYears.find((entry) => entry.year === year);
+        if (projection) projection.value = cumulativeSaving - systemCost;
+      }
+
+      const annualROI = ((yearOneSaving + yearOneSEG) / systemCost) * 100;
+      const simplePayback = systemCost / Math.max(yearOneSaving + yearOneSEG, 1);
+      const displayPayback = paybackYear || (simplePayback > YEARS ? '25+' : simplePayback.toFixed(1));
+
+      return {
+        kw,
+        baseGeneration,
+        systemCost,
+        budget,
+        financing,
+        addBattery,
+        effectiveSelf,
+        yearOneSaving,
+        yearOneSEG,
+        annualROI,
+        payback: displayPayback,
+        paybackText: paybackYear ? 'years to break even' : 'years under current assumptions',
+        totalSavings: cumulativeSaving - systemCost,
+        projectionYears
+      };
+    }
+
+    function renderProjection(rows) {
+      const maxValue = Math.max(...rows.map((row) => Math.abs(row.value)), 1);
+      const projection = document.getElementById('projectionBars');
+      projection.innerHTML = rows.map((row) => {
+        const width = Math.max((Math.abs(row.value) / maxValue) * 100, 6);
+        return `
+          <div class="projection-row">
+            <span>Year ${row.year}</span>
+            <div class="projection-bar"><div class="projection-fill" style="width:${width}%"></div></div>
+            <strong>${row.value >= 0 ? '+' : '-'}&pound;${fmt(Math.abs(row.value))}</strong>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateRecommendation(result) {
+      const installer = INSTALLERS[result.budget];
+      const financeCopy = {
+        cash: 'Cash purchase usually gives the shortest payback and highest lifetime value.',
+        loan: 'Loan finance spreads cost but reduces early-year net savings because of interest.',
+        lease: 'Leases reduce upfront spend but also reduce ownership upside over time.',
+        ppa: 'A PPA lowers upfront risk but typically limits the savings you keep.'
+      };
+
+      document.getElementById('recommendationBody').innerHTML = `
+        <strong style="display:block;margin-bottom:8px">${installer.label}</strong>
+        <div style="margin-bottom:8px">${installer.examples}</div>
+        <div style="margin-bottom:10px">${installer.description}</div>
+        <div style="margin-bottom:10px"><strong>Typical warranty profile:</strong> ${installer.warranty}</div>
+        <div><strong>Finance note:</strong> ${financeCopy[result.financing]}</div>
+      `;
+    }
+
+    function updateUI() {
+      const result = calculate();
+      document.getElementById('payback').textContent = typeof result.payback === 'number' ? result.payback.toFixed(1) : result.payback;
+      document.getElementById('paybackSub').textContent = result.paybackText;
+      document.getElementById('annualGen').textContent = fmt(Math.round(result.baseGeneration));
+      document.getElementById('annualSaving').innerHTML = fmtGBP(result.yearOneSaving);
+      document.getElementById('segEarnings').innerHTML = fmtGBP(result.yearOneSEG);
+      document.getElementById('totalSavings').innerHTML = fmtGBP(result.totalSavings);
+      document.getElementById('annualROI').textContent = result.annualROI.toFixed(1) + '%';
+      document.getElementById('calcSummary').innerHTML =
+        'Estimated installed cost ' + fmtGBP(result.systemCost) +
+        ', annual year-one value of ' + fmtGBP(result.yearOneSaving + result.yearOneSEG) +
+        ', and self-consumption around ' + Math.round(result.effectiveSelf * 100) + '%.';
+      renderProjection(result.projectionYears);
+      updateRecommendation(result);
+    }
+
+    function resetDefaults() {
+      document.getElementById('systemSize').value = '5';
+      document.getElementById('region').value = '1.08';
+      document.getElementById('orientation').value = '1.00';
+      document.getElementById('annualConsumption').value = '3700';
+      document.getElementById('unitRate').value = '28';
+      document.getElementById('selfConsumption').value = '40';
+      document.getElementById('selfConsumptionVal').textContent = '40%';
+      document.getElementById('segRate').value = '8';
+      document.getElementById('priceInflation').value = '5';
+      document.getElementById('priceInflationVal').textContent = '5%';
+      document.getElementById('budget').value = 'mid';
+      document.getElementById('financing').value = 'cash';
+      document.getElementById('loanAPR').value = '7.9';
+      document.getElementById('addBattery').checked = false;
+      document.getElementById('loanField').style.display = 'none';
+      updateUI();
+    }
+
+    function attachEvents() {
+      [
+        'systemSize',
+        'region',
+        'orientation',
+        'annualConsumption',
+        'unitRate',
+        'segRate',
+        'budget',
+        'financing',
+        'loanAPR'
+      ].forEach((id) => {
+        const element = document.getElementById(id);
+        element.addEventListener('input', updateUI);
+        element.addEventListener('change', updateUI);
+      });
+
+      document.getElementById('selfConsumption').addEventListener('input', (event) => {
+        document.getElementById('selfConsumptionVal').textContent = event.target.value + '%';
+        updateUI();
+      });
+
+      document.getElementById('priceInflation').addEventListener('input', (event) => {
+        document.getElementById('priceInflationVal').textContent = event.target.value + '%';
+        updateUI();
+      });
+
+      document.getElementById('addBattery').addEventListener('change', updateUI);
+      document.getElementById('financing').addEventListener('change', (event) => {
+        document.getElementById('loanField').style.display = event.target.value === 'loan' ? 'flex' : 'none';
+        updateUI();
+      });
+      document.getElementById('recalcButton').addEventListener('click', updateUI);
+      document.getElementById('resetButton').addEventListener('click', resetDefaults);
+    }
+
+    attachEvents();
+    updateUI();
+  </script>
+</body>
+</html>
