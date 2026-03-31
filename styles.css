@@ -169,16 +169,16 @@ header.site-header{
   align-items:center;
   gap:12px;
   text-decoration:none;
-  padding:6px 10px;
-  border-radius:14px;
-  background:rgba(255,255,255,.12);
+  padding:0;
+  border-radius:0;
+  background:transparent;
 }
 
 .logo{
-  height:74px;
+  height:58px;
   width:auto;
   display:block;
-  border-radius:12px;
+  border-radius:0;
   filter:none;
 }
 
@@ -1049,7 +1049,7 @@ footer.site-footer{
 
 @media (max-width: 768px){
   .logo{
-    height:56px;
+    height:46px;
   }
 
   .hero,
