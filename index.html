@@ -52,36 +52,36 @@
         </div>
       </div>
   
-      <aside class="hero-card" id="quiz">
+      <aside class="hero-card" id="quiz" aria-labelledby="quiz-title">
         <div class="badge">3-step guide</div>
-        <h3>Find the best next step for your home</h3>
+        <h3 id="quiz-title">Find the best next step for your home</h3>
         <p>Use this quick guide to decide whether you should start with estimated savings, installer research, or both.</p>
   
         <div class="step active" id="step1">
           <h4>Step 1: Which home best matches yours?</h4>
           <div class="option-grid">
-            <div class="option" onclick="nextStep('1-2 bedroom home')">1-2 bedroom home</div>
-            <div class="option" onclick="nextStep('3 bedroom home')">3 bedroom home</div>
-            <div class="option" onclick="nextStep('4+ bedroom home')">4+ bedroom home</div>
-            <div class="option" onclick="nextStep('Not sure yet')">Not sure yet</div>
+            <button class="option" type="button" data-next-step="1-2 bedroom home">1-2 bedroom home</button>
+            <button class="option" type="button" data-next-step="3 bedroom home">3 bedroom home</button>
+            <button class="option" type="button" data-next-step="4+ bedroom home">4+ bedroom home</button>
+            <button class="option" type="button" data-next-step="Not sure yet">Not sure yet</button>
           </div>
         </div>
   
         <div class="step" id="step2">
           <h4>Step 2: What is your roof orientation?</h4>
           <div class="option-grid">
-            <div class="option" onclick="nextStep('South-facing roof')">South-facing</div>
-            <div class="option" onclick="nextStep('East / West roof')">East / West</div>
-            <div class="option" onclick="nextStep('Mixed / unsure roof')">Mixed / unsure</div>
+            <button class="option" type="button" data-next-step="South-facing roof">South-facing</button>
+            <button class="option" type="button" data-next-step="East / West roof">East / West</button>
+            <button class="option" type="button" data-next-step="Mixed / unsure roof">Mixed / unsure</button>
           </div>
         </div>
   
         <div class="step" id="step3">
           <h4>Step 3: Are you considering battery storage?</h4>
           <div class="option-grid">
-            <div class="option" onclick="showResults('Solar + battery')">Yes, include battery storage</div>
-            <div class="option" onclick="showResults('Solar only')">Solar only</div>
-            <div class="option" onclick="showResults('Not sure yet')">Not sure yet</div>
+            <button class="option" type="button" data-show-results="Solar + battery">Yes, include battery storage</button>
+            <button class="option" type="button" data-show-results="Solar only">Solar only</button>
+            <button class="option" type="button" data-show-results="Not sure yet">Not sure yet</button>
           </div>
         </div>
   
@@ -95,7 +95,7 @@
       <div class="section-head">
         <span class="eyebrow">Your next-step routes</span>
         <h2>Start with the route that fits your home, budget, and confidence level</h2>
-        <p id="resultsSummary">Use the quick matcher above, then choose the best next page for your decision stage.</p>
+        <p id="resultsSummary" aria-live="polite">Use the quick matcher above, then choose the best next page for your decision stage.</p>
       </div>
 
       <div class="grid-3">

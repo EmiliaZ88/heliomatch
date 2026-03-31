@@ -16,25 +16,30 @@ function initHomepageMatcher() {
   const step3 = document.getElementById('step3');
   const resultsSummary = document.getElementById('resultsSummary');
   const resultsSection = document.getElementById('resultsSection');
+  const steps = [step1, step2, step3].filter(Boolean);
+  const nextButtons = document.querySelectorAll('[data-next-step]');
+  const resultButtons = document.querySelectorAll('[data-show-results]');
 
   if (!step1 || !step2 || !step3 || !resultsSummary || !resultsSection) return;
 
   let step = 1;
   const answers = [];
 
-  window.nextStep = function (answer) {
+  function updateVisibleStep() {
+    steps.forEach((panel, index) => {
+      const isActive = index + 1 === step;
+      panel.classList.toggle('active', isActive);
+      panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+    });
+  }
+
+  function nextStep(answer) {
     answers.push(answer);
-
-    const current = document.getElementById('step' + step);
-    if (current) current.classList.remove('active');
-
     step += 1;
+    updateVisibleStep();
+  }
 
-    const next = document.getElementById('step' + step);
-    if (next) next.classList.add('active');
-  };
-
-  window.showResults = function (answer) {
+  function showResults(answer) {
     answers.push(answer);
     resultsSummary.textContent =
       'Profile selected: ' +
@@ -42,7 +47,23 @@ function initHomepageMatcher() {
       '. Choose the next page that matches where you are in your buying journey.';
 
     resultsSection.scrollIntoView({ behavior: 'smooth' });
-  };
+  }
+
+  steps.forEach((panel, index) => {
+    panel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+  });
+
+  nextButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      nextStep(button.getAttribute('data-next-step'));
+    });
+  });
+
+  resultButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      showResults(button.getAttribute('data-show-results'));
+    });
+  });
 }
 
 function initComparisonTabs() {
