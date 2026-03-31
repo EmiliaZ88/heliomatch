@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solar ROI Calculator | HelioMatch</title>
-  <meta name="description" content="Estimate solar generation, bill savings, SEG income, payback, and long-term value with the HelioMatch solar ROI calculator." />
+  <title>Solar Savings Calculator UK | HelioMatch</title>
+<meta name="description" content="Estimate likely solar generation, bill savings, export income, and payback with a UK solar savings calculator." />
   <link rel="icon" type="image/png" href="favicon.png" />
   <meta name="theme-color" content="#1F8FE5" />
   <link rel="stylesheet" href="styles.css" />
@@ -33,8 +33,12 @@
         <span class="eyebrow">Illustrative calculator</span>
         <h1>Estimate how much solar could save your household</h1>
         <p class="lead">
-          This calculator gives a fast, client-side estimate for generation, savings, export income, payback, and 25-year value. It is designed for research, not as financial or engineering advice.
-        </p>
+          Use this calculator to estimate likely generation, bill savings, export income, payback, and long-term value using broad UK assumptions. It is a research tool only, not financial, tax, or engineering advice.
+        </p> 
+        <div class="notice-box" style="margin:0 0 24px">
+          <strong>Estimate only:</strong> Results can vary materially depending on roof condition, shading, orientation, tariff, export rate, finance terms, and installer pricing.
+        </div>
+               
         <ul class="inline-points">
           <li>No forms or data capture</li>
           <li>Battery and finance scenarios</li>
@@ -93,7 +97,7 @@
           </div>
           <div class="field">
             <label for="unitRate">Electricity unit rate (p/kWh)</label>
-            <input type="number" id="unitRate" value="28" min="10" max="80" step="0.5" />
+            <input type="number" id="unitRate" value="27" min="10" max="80" step="0.5" />
           </div>
           <div class="field">
             <label for="budget">Installer budget</label>
@@ -125,7 +129,7 @@
           </div>
           <div class="field">
             <label for="segRate">SEG export rate (p/kWh)</label>
-            <input type="number" id="segRate" value="8" min="1" max="30" step="0.5" />
+            <input type="number" id="segRate" value="12" min="1" max="30" step="0.5" />
           </div>
           <div class="field">
             <label for="priceInflation">Annual electricity price inflation (%)</label>
@@ -213,11 +217,13 @@
           <div class="badge">Assumptions</div>
           <h3>How the calculator works</h3>
           <ul>
-            <li>Base irradiance uses 950 kWh per kWp per year as a broad UK average.</li>
+            <li>Base irradiance uses 900 kWh per kWp per year as a broad UK planning average.</li>
             <li>Output degrades by 0.5% per year.</li>
-            <li>Maintenance of &pound;125 per year starts in year 3.</li>
-            <li>Battery storage increases self-consumption but adds system cost.</li>
+            <li>Maintenance of £125 per year starts in year 3.</li>
+            <li>Battery storage can improve self-consumption but also increases installed cost.</li>
+            <li>Illustrative assumptions should be checked against current installer quotes, SEG tariffs, and VAT rules.</li>
           </ul>
+          
         </div>
         <div class="card">
           <div class="badge">Next step</div>
@@ -307,7 +313,7 @@
 
   <script src="site.js"></script>
   <script>
-    const BASE_IRRADIANCE = 950;
+    const BASE_IRRADIANCE = 900;
     const DEGRADATION = 0.005;
     const MAINTENANCE_FROM_YEAR = 3;
     const MAINTENANCE_ANNUAL = 125;
@@ -356,9 +362,9 @@
       const regionFactor = parseFloat(document.getElementById('region').value);
       const orientFactor = parseFloat(document.getElementById('orientation').value);
       const annualConsumption = parseInt(document.getElementById('annualConsumption').value, 10) || 3700;
-      const unitRateP = parseFloat(document.getElementById('unitRate').value) || 28;
+      const unitRateP = parseFloat(document.getElementById('unitRate').value) || 27;
       const selfPct = parseInt(document.getElementById('selfConsumption').value, 10) / 100;
-      const segRateP = parseFloat(document.getElementById('segRate').value) || 8;
+      const segRateP = parseFloat(document.getElementById('segRate').value) || 12;
       const inflation = parseFloat(document.getElementById('priceInflation').value) / 100;
       const budget = document.getElementById('budget').value;
       const financing = document.getElementById('financing').value;
@@ -488,10 +494,10 @@
       document.getElementById('region').value = '1.08';
       document.getElementById('orientation').value = '1.00';
       document.getElementById('annualConsumption').value = '3700';
-      document.getElementById('unitRate').value = '28';
+      document.getElementById('unitRate').value = '27';
       document.getElementById('selfConsumption').value = '40';
       document.getElementById('selfConsumptionVal').textContent = '40%';
-      document.getElementById('segRate').value = '8';
+      document.getElementById('segRate').value = '12';
       document.getElementById('priceInflation').value = '5';
       document.getElementById('priceInflationVal').textContent = '5%';
       document.getElementById('budget').value = 'mid';
